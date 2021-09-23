@@ -1,4 +1,4 @@
-package ru.mephi.sem1;
+package ru.mephi.classworks.seminar1;
 
 public class MyList {
 
