@@ -156,6 +156,8 @@ public class MyList {
         myList.add(1);
         myList.add(2);
         myList.add(3);
+        myList.add(null);
+        myList.add(4);
 
         myList.add(4, 0);
         myList.add(6, 2);
