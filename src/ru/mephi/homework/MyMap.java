@@ -1,7 +1,7 @@
-package ru.mephi.homeworks.seminar1;
+package ru.mephi.homework;
 
 
-import ru.mephi.classworks.seminar1.MyList;
+import ru.mephi.classwork.MyList;
 
 public class MyMap {
 
