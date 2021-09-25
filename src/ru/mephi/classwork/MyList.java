@@ -20,9 +20,10 @@ public class MyList {
                     "value_=" + value +
                     ']';
         } //+
+
     }
 
-    MyList() {
+    public MyList() {
         this.head = null;
     }//+
 
