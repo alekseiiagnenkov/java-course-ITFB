@@ -37,7 +37,7 @@ class Pair {
 
 public class MyMap {
 
-    MyList head;
+    private final MyList head;
 
     MyMap() {
         this.head = new MyList();
@@ -45,12 +45,12 @@ public class MyMap {
 
     //- Положить по ключу значение:
     public void put(Object key, Object value) {
-            for (int i = 0; i < this.head.size(); i++) {
-                if (((Pair)this.head.get(i)).getKey() == key) {
-                    ((Pair) head.get(i)).setValue(value);
-                    return;
-                }
+        for (int i = 0; i < this.head.size(); i++) {
+            if (((Pair) this.head.get(i)).getKey() == key) {
+                ((Pair) head.get(i)).setValue(value);
+                return;
             }
+        }
         this.head.add(new Pair(key, value));
     } //+
 
@@ -73,14 +73,27 @@ public class MyMap {
     // Значение по умолчанию необходимо
     // сохранить.
     public Object get(Object key, Object byDefault) {
-        return null;
-    }
+        Object value;
+        if ((value = this.get(key)) == null) {
+            return byDefault;
+        }
+        return value;
+    } //+
 
     //- Удалить по ключу, возвращает текущее
     //  значение
     public Object remove(Object key) {
+        if (!this.head.isEmpty()) {
+            for (int i = 0; i < this.head.size(); i++) {
+                Pair pair = ((Pair) this.head.get(i));
+                if (key == pair.getKey()) {
+                    head.remove(i);
+                    return pair.getValue();
+                }
+            }
+        }
         return null;
-    }
+    } //+
 
     //- Проверить наличие ключа:
     public boolean keyContains(Object key) {
@@ -135,12 +148,12 @@ public class MyMap {
 
     public static void main(String[] args) {
         MyMap map = new MyMap();
-        map.put('o', 9);
-        map.put('t', 5);
         map.put('u', 7);
         map.put('r', 4);
         map.put('u', 7);
         map.put('u', 777);
         map.put('e', 3);
+        System.out.printf("Size:%d\nEmpty:%b\nFind:%b", map.size(), map.isEmpty(), map.get('u'));
+
     }
 }
