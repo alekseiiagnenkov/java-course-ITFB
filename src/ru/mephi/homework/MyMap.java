@@ -2,6 +2,10 @@ package ru.mephi.homework;
 
 import ru.mephi.classwork.MyList;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
 class Pair {
     private Object key;
     private Object value;
@@ -73,11 +77,10 @@ public class MyMap {
     // Значение по умолчанию необходимо
     // сохранить.
     public Object get(Object key, Object byDefault) {
-        Object value;
-        if ((value = this.get(key)) == null) {
-            return byDefault;
+        if(this.keyContains(key)) {
+            return this.get(key);
         }
-        return value;
+        return byDefault;
     } //+
 
     //- Удалить по ключу, возвращает текущее
@@ -147,6 +150,13 @@ public class MyMap {
     } //+
 
     public static void main(String[] args) {
+        Map<Object, Integer> maap = new HashMap<>();
+        maap.put(1,-1);
+        maap.put(null,1);
+        maap.put(3,null);
+        Object a = maap.getOrDefault(5,5);
+
+
         MyMap map = new MyMap();
         map.put('u', 7);
         map.put('r', 4);
