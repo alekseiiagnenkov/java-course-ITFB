@@ -77,7 +77,7 @@ public class MyMap {
     // Значение по умолчанию необходимо
     // сохранить.
     public Object get(Object key, Object byDefault) {
-        if(this.keyContains(key)) {
+        if (this.keyContains(key)) {
             return this.get(key);
         }
         return byDefault;
@@ -150,20 +150,13 @@ public class MyMap {
     } //+
 
     public static void main(String[] args) {
-        Map<Object, Integer> maap = new HashMap<>();
-        maap.put(1,-1);
-        maap.put(null,1);
-        maap.put(3,null);
-        Object a = maap.getOrDefault(5,5);
-
-
         MyMap map = new MyMap();
         map.put('u', 7);
         map.put('r', 4);
         map.put('u', 7);
         map.put('u', 777);
         map.put('e', 3);
+        map.put(0, 3);
         System.out.printf("Size:%d\nEmpty:%b\nFind:%b", map.size(), map.isEmpty(), map.get('u'));
-
     }
 }

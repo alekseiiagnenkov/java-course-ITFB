@@ -158,25 +158,7 @@ public class MyList {
         myList.add(2);
         myList.add(3);
         myList.add(null);
-        myList.add(4);
-
         myList.add(4, 0);
-        myList.add(6, 2);
-        myList.add(8, -1);
-        myList.add(5, 9);
-        myList.add(7, myList.size());
-
-        myList.set(9, 0);
-        myList.set(10, 3);
-        myList.set(11, -1);
-        myList.set(12, 15);
-        myList.set(13, myList.size() - 1);
-
-        myList.remove(0);
-        myList.remove(3);
-        myList.remove(-1);
-        myList.remove(7);
-        myList.remove(myList.size() - 1);
 
         System.out.printf(" Size: %d\n Empty: %b\n IndexOf: %d\n Get: %s\n", myList.size(), myList.isEmpty(), myList.indexOf(5), myList.get(3));
     }
