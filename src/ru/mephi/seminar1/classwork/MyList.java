@@ -1,27 +1,8 @@
-package ru.mephi.classwork;
+package ru.mephi.seminar1.classwork;
 
 public class MyList {
 
     private Item head;
-
-    private static class Item {
-
-        private Object value;
-        private Item next;
-
-        Item(Object value) {
-            this.value = value;
-            this.next = null;
-        } //+
-
-        @Override
-        public String toString() {
-            return " Item [" +
-                    "value_=" + value +
-                    ']';
-        } //+
-
-    }
 
     public MyList() {
         this.head = null;
@@ -39,9 +20,9 @@ public class MyList {
         if (this.head != null) {
 
             Item ptr = this.head;
-            while (ptr.next != null)
-                ptr = ptr.next;
-            ptr.next = it;
+            while (ptr.getNext() != null)
+                ptr = ptr.getNext();
+            ptr.setNext(it);
 
         } else {
             this.head = it;
@@ -54,12 +35,14 @@ public class MyList {
 
             if (index == 0) {
                 delValue = this.head;
-                this.head = this.head.next;
+                this.head = this.head.getNext();
             } else {
                 Item ptr = this.head;
-                for (int i = 0; i != index - 1; i++, ptr = ptr.next) ;
-                delValue = ptr.next;
-                ptr.next = ptr.next.next;
+                for (int i = 0; i != index - 1; i++) {
+                    ptr = ptr.getNext();
+                }
+                delValue = ptr.getNext();
+                ptr.setNext(ptr.getNext().getNext());
             }
         }
         return delValue;
@@ -72,13 +55,15 @@ public class MyList {
             } else {
                 Item it = new Item(value);
                 if (index == 0) {
-                    it.next = this.head;
+                    it.setNext(this.head);
                     this.head = it;
                 } else {
                     Item ptr = this.head;
-                    for (int i = 0; i != index - 1; i++, ptr = ptr.next) ;
-                    it.next = ptr.next;
-                    ptr.next = it;
+                    for (int i = 0; i != index - 1; i++) {
+                        ptr = ptr.getNext();
+                    }
+                    it.setNext(ptr.getNext());
+                    ptr.setNext(it);
                 }
             }
         }
@@ -88,8 +73,10 @@ public class MyList {
         if (this.head != null) {
             if (index < this.size()) {
                 Item ptr = this.head;
-                for (int i = 0; i != index; i++, ptr = ptr.next) ;
-                return ptr.value;
+                for (int i = 0; i != index; i++) {
+                    ptr = ptr.getNext();
+                }
+                return ptr.getValue();
             }
         }
         return null;
@@ -100,11 +87,11 @@ public class MyList {
             int i = 0;
             Item ptr = this.head;
             while (ptr != null) {
-                if (ptr.value == value) {
+                if (ptr.getValue() == value) {
                     break;
                 }
                 i++;
-                ptr = ptr.next;
+                ptr = ptr.getNext();
             }
             if (ptr != null) {
                 return i;
@@ -116,9 +103,9 @@ public class MyList {
     public boolean contains(Object value) {
         Item ptr = this.head;
         while (ptr != null) {
-            if (ptr.value == value)
+            if (ptr.getValue() == value)
                 return true;
-            ptr = ptr.next;
+            ptr = ptr.getNext();
         }
         return false;
     } //+
@@ -129,15 +116,17 @@ public class MyList {
 
             Item it = new Item(value);
             if (index == 0) {
-                it.next = this.head.next;
+                it.setNext(this.head.getNext());
                 del = this.head;
                 this.head = it;
             } else {
                 Item ptr = this.head;
-                for (int i = 0; i != index - 1; i++, ptr = ptr.next) ;
-                del = ptr.next;
-                it.next = ptr.next.next;
-                ptr.next = it;
+                for (int i = 0; i != index - 1; i++) {
+                    ptr = ptr.getNext();
+                }
+                del = ptr.getNext();
+                it.setNext(ptr.getNext().getNext());
+                ptr.setNext(it);
             }
         }
         return del;
@@ -145,11 +134,16 @@ public class MyList {
 
     public int size() {
         int i = 0;
-        for (Item ptr = this.head; ptr != null; i++, ptr = ptr.next) ;
+        Item ptr = this.head;
+        for (; ptr != null; i++) {
+            ptr = ptr.getNext();
+        }
         return i;
     } //+
 
-    public boolean isEmpty() { return this.head == null; } //+
+    public boolean isEmpty() {
+        return this.head == null;
+    } //+
 
     public static void main(String[] args) {
         MyList myList = new MyList();
@@ -157,6 +151,7 @@ public class MyList {
         myList.add(1);
         myList.add(2);
         myList.add(3);
+        myList.add(-3);
         myList.add(null);
         myList.add(4, 0);
 
