@@ -16,7 +16,6 @@ public class lab1 {
             else
                 map.put(s, count + 1);
         }
-
         System.out.print(map);
     }
 }
