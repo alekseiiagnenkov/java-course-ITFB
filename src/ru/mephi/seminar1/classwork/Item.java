@@ -1,13 +1,11 @@
 package ru.mephi.seminar1.classwork;
 
-import java.util.Objects;
+public class Item<T> {
 
-public class Item {
+    private T value;
+    private Item<T> next;
 
-    private Object value;
-    private Item next;
-
-    Item(Object value) {
+    Item(T value) {
         this.value = value;
         this.next = null;
     } //+
@@ -19,32 +17,19 @@ public class Item {
                 ']';
     } //+
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return Objects.equals(this.value, item.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, next);
-    }
-
-    public Object getValue() {
+    public T getValue() {
         return value;
     }
 
-    public Item getNext() {
+    public Item<T> getNext() {
         return next;
     }
 
-    public void setValue(Object value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
-    public void setNext(Item next) {
+    public void setNext(Item<T> next) {
         this.next = next;
     }
 }

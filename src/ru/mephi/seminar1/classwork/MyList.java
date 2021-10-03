@@ -1,8 +1,8 @@
 package ru.mephi.seminar1.classwork;
 
-public class MyList {
+public class MyList<T> {
 
-    private Item head;
+    private Item<T> head;
 
     public MyList() {
         this.head = null;
@@ -15,11 +15,11 @@ public class MyList {
                 '}';
     } //+
 
-    public void add(Object value) {
-        Item it = new Item(value);
+    public void add(T value) {
+        Item<T> it = new Item<>(value);
         if (this.head != null) {
 
-            Item ptr = this.head;
+            Item<T> ptr = this.head;
             while (ptr.getNext() != null)
                 ptr = ptr.getNext();
             ptr.setNext(it);
@@ -29,15 +29,15 @@ public class MyList {
         }
     } //+
 
-    public Object remove(int index) {
-        Object delValue = null;
+    public Item<T> remove(int index) {
+        Item<T> delValue = null;
         if (index > -1 && index < this.size()) {
 
             if (index == 0) {
                 delValue = this.head;
                 this.head = this.head.getNext();
             } else {
-                Item ptr = this.head;
+                Item<T> ptr = this.head;
                 for (int i = 0; i != index - 1; i++) {
                     ptr = ptr.getNext();
                 }
@@ -48,17 +48,17 @@ public class MyList {
         return delValue;
     } //+
 
-    public void add(Object value, int index) {
+    public void add(T value, int index) {
         if (index > -1) {
             if (this.size() < index) {
                 add(value);
             } else {
-                Item it = new Item(value);
+                Item<T> it = new Item<>(value);
                 if (index == 0) {
                     it.setNext(this.head);
                     this.head = it;
                 } else {
-                    Item ptr = this.head;
+                    Item<T> ptr = this.head;
                     for (int i = 0; i != index - 1; i++) {
                         ptr = ptr.getNext();
                     }
@@ -72,7 +72,7 @@ public class MyList {
     public Object get(int index) {
         if (this.head != null) {
             if (index < this.size()) {
-                Item ptr = this.head;
+                Item<T> ptr = this.head;
                 for (int i = 0; i != index; i++) {
                     ptr = ptr.getNext();
                 }
@@ -85,7 +85,7 @@ public class MyList {
     public int indexOf(Object value) {
         if (this.head != null) {
             int i = 0;
-            Item ptr = this.head;
+            Item<T> ptr = this.head;
             while (ptr != null) {
                 if (ptr.getValue() == value) {
                     break;
@@ -101,7 +101,7 @@ public class MyList {
     } //+
 
     public boolean contains(Object value) {
-        Item ptr = this.head;
+        Item<T> ptr = this.head;
         while (ptr != null) {
             if (ptr.getValue() == value)
                 return true;
@@ -110,17 +110,17 @@ public class MyList {
         return false;
     } //+
 
-    public Item set(Object value, int index) {
-        Item del = null;
+    public Item<T> set(T value, int index) {
+        Item<T> del = null;
         if (index > -1 && index < this.size()) {
 
-            Item it = new Item(value);
+            Item<T> it = new Item<>(value);
             if (index == 0) {
                 it.setNext(this.head.getNext());
                 del = this.head;
                 this.head = it;
             } else {
-                Item ptr = this.head;
+                Item<T> ptr = this.head;
                 for (int i = 0; i != index - 1; i++) {
                     ptr = ptr.getNext();
                 }
@@ -134,7 +134,7 @@ public class MyList {
 
     public int size() {
         int i = 0;
-        Item ptr = this.head;
+        Item<T> ptr = this.head;
         for (; ptr != null; i++) {
             ptr = ptr.getNext();
         }
@@ -146,13 +146,14 @@ public class MyList {
     } //+
 
     public static void main(String[] args) {
-        MyList myList = new MyList();
+        MyList<Integer> myList = new MyList<>();
 
         myList.add(1);
         myList.add(2);
-        myList.add(3);
+        myList.add(5);
         myList.add(-3);
         myList.add(null);
+        myList.add(-5);
         myList.add(4, 0);
 
         System.out.printf(" Size: %d\n Empty: %b\n IndexOf: %d\n Get: %s\n", myList.size(), myList.isEmpty(), myList.indexOf(5), myList.get(3));
