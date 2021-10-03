@@ -1,46 +1,13 @@
-package ru.mephi.homework;
+package ru.mephi.seminar1.homework;
 
-import ru.mephi.classwork.MyList;
-
-class Pair {
-    private Object key;
-    private Object value;
-
-    Pair(Object key, Object value) {
-        this.key = key;
-        this.value = value;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
-    public Object getKey() {
-        return key;
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-    public void setKey(Object key) {
-        this.key = key;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o != null)
-            return this.key == ((Pair) o).key && this.value == ((Pair) o).value;
-        return false;
-    }
-}
+import ru.mephi.seminar1.classwork.MyList;
 
 public class MyMap {
 
-    MyList head;
+    private final MyList<Pair> head;
 
-    MyMap() {
-        this.head = new MyList();
+    public MyMap() {
+        this.head = new MyList<>();
     } //+
 
     //- Положить по ключу значение:
@@ -73,12 +40,24 @@ public class MyMap {
     // Значение по умолчанию необходимо
     // сохранить.
     public Object get(Object key, Object byDefault) {
-        return null;
+        if (this.keyContains(key)) {
+            return this.get(key);
+        }
+        return byDefault;
     }
 
     //- Удалить по ключу, возвращает текущее
     //  значение
     public Object remove(Object key) {
+        if (!this.head.isEmpty()) {
+            for (int i = 0; i < this.head.size(); i++) {
+                Pair pair = ((Pair) this.head.get(i));
+                if (key == pair.getKey()) {
+                    head.remove(i);
+                    return pair.getValue();
+                }
+            }
+        }
         return null;
     }
 
@@ -95,9 +74,9 @@ public class MyMap {
     } //+
 
     //- Получить список ключей:
-    public MyList getKeys() {
+    public MyList<Object> getKeys() {
         if (!this.head.isEmpty()) {
-            MyList values = new MyList();
+            MyList<Object> values = new MyList<>();
             for (int i = 0; i < this.head.size(); i++) {
                 values.add(((Pair) this.head.get(i)).getKey());
             }
@@ -107,9 +86,9 @@ public class MyMap {
     } //+
 
     //- Получить список значений:
-    public MyList getValues() {
+    public MyList<Object> getValues() {
         if (!this.head.isEmpty()) {
-            MyList values = new MyList();
+            MyList<Object> values = new MyList<>();
             for (int i = 0; i < this.head.size(); i++) {
                 values.add(((Pair) this.head.get(i)).getValue());
             }
@@ -119,7 +98,7 @@ public class MyMap {
     } //+
 
     //- Получить список пар: ключ, значение:
-    public MyList getEntries() {
+    public MyList<Pair> getEntries() {
         return this.head;
     } //+
 
