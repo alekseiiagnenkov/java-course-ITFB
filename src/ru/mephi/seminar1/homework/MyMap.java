@@ -1,23 +1,56 @@
-package ru.mephi.seminar1.homework;
+package ru.mephi.homework;
 
-import ru.mephi.seminar1.classwork.MyList;
+import ru.mephi.classwork.MyList;
+
+class Pair {
+    private Object key;
+    private Object value;
+
+    Pair(Object key, Object value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public Object getKey() {
+        return key;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public void setKey(Object key) {
+        this.key = key;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null)
+            return this.key == ((Pair) o).key && this.value == ((Pair) o).value;
+        return false;
+    }
+}
 
 public class MyMap {
 
-    private final MyList head;
+    MyList head;
 
-    public MyMap() {
+    MyMap() {
         this.head = new MyList();
     } //+
 
     //- Положить по ключу значение:
     public void put(Object key, Object value) {
-        for (int i = 0; i < this.head.size(); i++) {
-            if (((Pair) this.head.get(i)).getKey() == key) {
-                ((Pair) head.get(i)).setValue(value);
-                return;
+            for (int i = 0; i < this.head.size(); i++) {
+                if (((Pair)this.head.get(i)).getKey() == key) {
+                    ((Pair) head.get(i)).setValue(value);
+                    return;
+                }
             }
-        }
         this.head.add(new Pair(key, value));
     } //+
 
@@ -40,26 +73,14 @@ public class MyMap {
     // Значение по умолчанию необходимо
     // сохранить.
     public Object get(Object key, Object byDefault) {
-        if (this.keyContains(key)) {
-            return this.get(key);
-        }
-        return byDefault;
-    } //+
+        return null;
+    }
 
     //- Удалить по ключу, возвращает текущее
     //  значение
     public Object remove(Object key) {
-        if (!this.head.isEmpty()) {
-            for (int i = 0; i < this.head.size(); i++) {
-                Pair pair = ((Pair) this.head.get(i));
-                if (key == pair.getKey()) {
-                    head.remove(i);
-                    return pair.getValue();
-                }
-            }
-        }
         return null;
-    } //+
+    }
 
     //- Проверить наличие ключа:
     public boolean keyContains(Object key) {
@@ -114,12 +135,12 @@ public class MyMap {
 
     public static void main(String[] args) {
         MyMap map = new MyMap();
+        map.put('o', 9);
+        map.put('t', 5);
         map.put('u', 7);
         map.put('r', 4);
         map.put('u', 7);
         map.put('u', 777);
         map.put('e', 3);
-        map.put(0, 3);
-        System.out.printf("Size:%d\nEmpty:%b\nFind:%b", map.size(), map.isEmpty(), map.get('u'));
     }
 }
