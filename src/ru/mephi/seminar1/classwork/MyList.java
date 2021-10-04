@@ -69,7 +69,7 @@ public class MyList<T> {
         }
     } //+
 
-    public Object get(int index) {
+    public T get(int index) {
         if (this.head != null) {
             if (index < this.size()) {
                 Item<T> ptr = this.head;
