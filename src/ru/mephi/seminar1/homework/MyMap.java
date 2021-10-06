@@ -13,8 +13,8 @@ public class MyMap {
     //- Положить по ключу значение:
     public void put(Object key, Object value) {
             for (int i = 0; i < this.head.size(); i++) {
-                if (((Pair)this.head.get(i)).getKey() == key) {
-                    ((Pair) head.get(i)).setValue(value);
+                if ((this.head.get(i)).getKey() == key) {
+                    (head.get(i)).setValue(value);
                     return;
                 }
             }
@@ -25,7 +25,7 @@ public class MyMap {
     public Object get(Object key) {
         if (!this.head.isEmpty()) {
             for (int i = 0; i < this.head.size(); i++) {
-                Pair p = (Pair) this.head.get(i);
+                Pair p = this.head.get(i);
                 if (key == p.getKey())
                     return p.getValue();
             }
@@ -51,7 +51,7 @@ public class MyMap {
     public Object remove(Object key) {
         if (!this.head.isEmpty()) {
             for (int i = 0; i < this.head.size(); i++) {
-                Pair pair = ((Pair) this.head.get(i));
+                Pair pair = (this.head.get(i));
                 if (key == pair.getKey()) {
                     head.remove(i);
                     return pair.getValue();
@@ -65,7 +65,7 @@ public class MyMap {
     public boolean keyContains(Object key) {
         if (!this.head.isEmpty()) {
             for (int i = 0; i < this.head.size(); i++) {
-                if (key == ((Pair) this.head.get(i)).getKey()) {
+                if (key == (this.head.get(i)).getKey()) {
                     return true;
                 }
             }
@@ -78,7 +78,7 @@ public class MyMap {
         if (!this.head.isEmpty()) {
             MyList<Object> values = new MyList<>();
             for (int i = 0; i < this.head.size(); i++) {
-                values.add(((Pair) this.head.get(i)).getKey());
+                values.add((this.head.get(i)).getKey());
             }
             return values;
         }
@@ -90,7 +90,7 @@ public class MyMap {
         if (!this.head.isEmpty()) {
             MyList<Object> values = new MyList<>();
             for (int i = 0; i < this.head.size(); i++) {
-                values.add(((Pair) this.head.get(i)).getValue());
+                values.add((this.head.get(i)).getValue());
             }
             return values;
         }
