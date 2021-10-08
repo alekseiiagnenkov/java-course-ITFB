@@ -2,15 +2,27 @@ package ru.mephi.seminar1.homework;
 
 import ru.mephi.seminar1.classwork.MyList;
 
+/**
+ * @author https://github.com/alekseiiagnenkov<br><br>
+ * My key / value collection<br>.
+ * Uses {@link MyList} to store {@link Pair}s.
+ */
 public class MyMap {
 
     private final MyList<Pair> head;
 
+    /**
+     * Constructor.
+     */
     public MyMap() {
         this.head = new MyList<>();
-    } //+
+    }
 
-    //- Положить по ключу значение:
+    /**
+     * Put a new <b>value</b> by <b>key</b>.
+     * @param key search <b>key</b>
+     * @param value new value
+     */
     public void put(Object key, Object value) {
             for (int i = 0; i < this.head.size(); i++) {
                 if ((this.head.get(i)).getKey() == key) {
@@ -19,9 +31,13 @@ public class MyMap {
                 }
             }
         this.head.add(new Pair(key, value));
-    } //+
+    }
 
-    //- Получить по ключу:
+    /**
+     * Get value by <b>key</b>.
+     * @param key search <b>key</b>
+     * @return <b>value</b> if an element with such a key is found, otherwise <b>null</b>
+     */
     public Object get(Object key) {
         if (!this.head.isEmpty()) {
             for (int i = 0; i < this.head.size(); i++) {
@@ -31,14 +47,16 @@ public class MyMap {
             }
         }
         return null;
-    } //+
+    }
 
-    //- Получить по ключу,
-    // если значение null, тогда надо
-    // вернуть значение по умолчанию,
-    // которое задается вторым параметром.
-    // Значение по умолчанию необходимо
-    // сохранить.
+    /**
+     * Get the <b>value</b> by key, if the value is <b>null</b>,
+     * then you need to return the <b>byDefault</b>,
+     * which is set by the second parameter.
+     * @param key search <b>key</b>
+     * @param byDefault for unsuccessful search
+     * @return the <b>value</b> of the found element if successful, otherwise <b>byDefault</b>
+     */
     public Object get(Object key, Object byDefault) {
         if (this.keyContains(key)) {
             return this.get(key);
@@ -46,8 +64,11 @@ public class MyMap {
         return byDefault;
     }
 
-    //- Удалить по ключу, возвращает текущее
-    //  значение
+    /**
+     * Remove a {@link Pair} by key.
+     * @param key search <b>key</b>
+     * @return the value of the deleted {@link Pair} or <b>null</b>
+     */
     public Object remove(Object key) {
         if (!this.head.isEmpty()) {
             for (int i = 0; i < this.head.size(); i++) {
@@ -61,6 +82,11 @@ public class MyMap {
         return null;
     }
 
+    /**
+     * Checking for a <b>key</b> in the MyMap.
+     * @param key search <b>key</b>
+     * @return <b>True</b> if found, otherwise a <b>false</b>
+     */
     //- Проверить наличие ключа:
     public boolean keyContains(Object key) {
         if (!this.head.isEmpty()) {
@@ -71,9 +97,12 @@ public class MyMap {
             }
         }
         return false;
-    } //+
+    }
 
-    //- Получить список ключей:
+    /**
+     * Get a {@link MyList} of <b>keys</b>.
+     * @return {@link MyList} of <b>keys</b> or null
+     */
     public MyList<Object> getKeys() {
         if (!this.head.isEmpty()) {
             MyList<Object> values = new MyList<>();
@@ -83,9 +112,12 @@ public class MyMap {
             return values;
         }
         return null;
-    } //+
+    }
 
-    //- Получить список значений:
+    /**
+     * Get a {@link MyList} of <b>values</b>.
+     * @return {@link MyList} of <b>values</b> or null
+     */
     public MyList<Object> getValues() {
         if (!this.head.isEmpty()) {
             MyList<Object> values = new MyList<>();
@@ -95,23 +127,35 @@ public class MyMap {
             return values;
         }
         return null;
-    } //+
+    }
 
-    //- Получить список пар: ключ, значение:
+    /**
+     * Get a list of {@link MyList} type {@link Pair}s: <b>key</b>, <b>value</b>.
+     * @return {@link MyList}
+     */
     public MyList<Pair> getEntries() {
         return this.head;
-    } //+
+    }
 
-    //- Размер словаря:
+    /**
+     * Map size.
+     * @return returns the <b>size</b> with {@link MyList#size()}
+     */
     public int size() {
         return this.head.size();
-    } //+
+    }
 
-    //- Пустой или нет:
+    /**
+     * Check for emptiness.
+     * @return <b>true</b> or <b>false</b>
+     */
     public boolean isEmpty() {
         return this.head.isEmpty();
-    } //+
+    }
 
+    /**
+     * main for test
+     */
     public static void main(String[] args) {
         MyMap map = new MyMap();
         map.put('o', 9);
