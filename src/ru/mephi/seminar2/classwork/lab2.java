@@ -9,6 +9,7 @@ import java.util.*;
  * .<br>Changed: Output is in the same order as input.
  */
 public class lab2 {
+    //TODO разделялись пробелом
     public static void main(String[] args) {
         System.out.print("Enter the number of lines:");
 
@@ -32,7 +33,7 @@ public class lab2 {
             int count = set.getOrDefault(s, -1);
 
             if (count == -1)
-                set.put(s, 0);
+                set.put(s, 1);
             else
                 set.put(s, count + 1);
         }

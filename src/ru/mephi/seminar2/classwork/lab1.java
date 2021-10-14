@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class lab1 {
     public static void main(String[] args) {
+        //TODO разделялись пробелом
         System.out.print("Enter the number of lines:");
 
         int size = -1;
@@ -32,7 +33,7 @@ public class lab1 {
             int count = map.getOrDefault(s, -1);
 
             if (count == -1)
-                map.put(s, 0);
+                map.put(s, 1);
             else
                 map.put(s, count + 1);
         }
