@@ -1,18 +1,21 @@
 package ru.mephi.seminar2.homework;
 
-        import ru.mephi.seminar1.classwork.MyList;
+import ru.mephi.seminar1.classwork.MyList;
 
 /**
+ * @param <T> any parameter that extends the Comparable
  * @author https://github.com/alekseiiagnenkov<br><br>
  * My generic class extending MyList class.<br>
  * The addAll function has been created.<br>
- * @param <T> any parameter that extends the Comparable
  */
 public class MyNewList<T extends Comparable> extends MyList<T> {
+
+    //TODO передеделать так, чтобы добавляла в this, а не в новый
 
     /**
      * Creates a new MyNewList that combines the elements of other and this.<br>
      * Cleans other and this.
+     *
      * @param other another MyNewList of the same type
      * @return sorted MyNewList containing elements from this and other
      */
@@ -20,6 +23,13 @@ public class MyNewList<T extends Comparable> extends MyList<T> {
         MyNewList<T> head = new MyNewList<>();
         while (this.size() > 0 || other.size() > 0) {
             if (other.size() > 0 && this.size() > 0) {
+
+                if (this.get(0) == null) {
+                    this.remove(0);
+                }
+                if (other.get(0) == null) {
+                    other.remove(0);
+                }
 
                 if (other.get(0).compareTo(this.get(0)) < 0) {
                     head.add(other.remove(0).getValue());
@@ -45,7 +55,7 @@ public class MyNewList<T extends Comparable> extends MyList<T> {
         MyNewList<Integer> list1 = new MyNewList<>();
         list1.add(-1);
         list1.add(1);
-        list1.add(5);
+        list1.add(null);
         list1.add(6);
         list1.add(7);
 
