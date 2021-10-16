@@ -1,9 +1,9 @@
 package ru.mephi.seminar3.classwork;
 
-import ru.mephi.seminar1.classwork.MyList;
-
-import java.math.MathContext;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class Employee {
 
@@ -165,22 +165,22 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "givenName:" + givenName + '\n' +
-                "surName:" + surName + '\n' +
-                "age:" + age + '\n' +
-                "gender:" + gender + '\n' +
-                "role" + role + '\n' +
-                "dept" + dept + '\n' +
-                "eMail" + eMail + '\n' +
-                "phone" + phone + '\n' +
-                "address" + address + '\n' +
-                "city" + city + '\n' +
-                "state" + state + '\n' +
-                "code" + code + '\n';
+        return "\nGivenName: " + givenName + '\n' +
+                "SurName: " + surName + '\n' +
+                "Age: " + age + '\n' +
+                "Gender: " + gender + '\n' +
+                "Role: " + role + '\n' +
+                "Dept: " + dept + '\n' +
+                "eMail: " + eMail + '\n' +
+                "Phone: " + phone + '\n' +
+                "Address: " + address + '\n' +
+                "City: " + city + '\n' +
+                "State: " + state + '\n' +
+                "Code: " + code + '\n';
     }
 
 
-    public static MyList<Employee> createShortList() {
+    public static List<Employee> createShortList() {
         Random rand = new Random();
 
         String[] names = {
@@ -200,8 +200,8 @@ public class Employee {
                 "New Mexico", "New York", "Virginia", "Wyoming"
         };
 
-        MyList<Employee> myList = new MyList<>();
-        int a = Math.abs(rand.nextInt() % 40) + 7;
+        List<Employee> myList = new LinkedList<>();
+        int a = Math.abs(rand.nextInt() % 20) + 7;
         for (int i = 0; i < a; i++) {
             int randName = Math.abs(rand.nextInt() % (names.length));
             myList.add(new Builder()
@@ -210,11 +210,13 @@ public class Employee {
                     .Age(Math.abs(rand.nextInt() % 65 + 15))
                     .Gender(randName % 2 == 0 ? Gender.MALE : Gender.FEMALE)
                     .Role(Role.values()[Math.abs(rand.nextInt() % 3)])
-                    .Dept(rand.nextInt() % 5)
+                    .Dept(Math.abs(rand.nextInt() % 5))
                     .eMail((rand.nextInt() % 10000 + 1000) + "@gmail.com")
                     .Phone("89" + Math.abs(rand.nextInt() % 1000 + 100) + Math.abs(rand.nextInt() % 10000 + 1000))
                     .Address(Math.abs(rand.nextInt() % 100) + " st." + Math.abs(rand.nextInt() % 90 + 10))
                     .City("SomeWhere")
+                    //я конечно могу сделать массив и создать зависимость от штата,
+                    //но думаю, что суть текущей задачи не в этом
                     .State(states[Math.abs(rand.nextInt() % (states.length))])
                     .Code(Math.abs(rand.nextInt() % 100))
                     .build()
@@ -224,8 +226,33 @@ public class Employee {
     }
 
     public static void main(String[] args) {
+        List<Employee> list = createShortList();
 
-        System.out.println(createShortList());
+        list.stream()
+                .parallel()
+                .filter(p -> p.getGender() == Gender.FEMALE)
+                .forEach(Accountant::payPremium);
+
+        list.stream()
+                .parallel()
+                .filter(p -> p.getDept() == 4)
+                .forEach(Accountant::paySalary);
+
+        list.stream()
+                .parallel()
+                .filter(p -> p.getDept() == 1)
+                .filter(p -> p.getAge() > 30)
+                .forEach(Accountant::payPremium);
+
+        list.stream()
+                .parallel()
+                .filter(p -> p.getRole() == Role.MANAGER)
+                .forEach(Accountant::paySalary);
+
+        list.stream()
+                .parallel()
+                .filter(p -> p.getRole() == Role.STAFF)
+                .forEach(Accountant::payPremium);
     }
 
 }
