@@ -1,12 +1,12 @@
 package ru.mephi.seminar3.classwork;
 
 public class Accountant {
-    public void paySalary(Employee employee) {
-        System.out.println(employee.getGivenName() + " " + employee.getSurName() + " GET SALARY!\n");
+    public static void paySalary(Employee employee) {
+        System.out.println(employee.getGivenName() + " " + employee.getSurName() + " GOT SALARY!\n");
     }
 
-    public void payPremium(Employee employee) {
-        System.out.println(employee.getGivenName() + " " + employee.getSurName() + " GET PREMIUM " + employee.getRole().getValue() * 10 + "% !!!\n");
+    public static void payPremium(Employee employee) {
+        System.out.println(employee.getGivenName() + " " + employee.getSurName() + " GOT PREMIUM " + employee.getRole().getValue() * 100 + "% !!!\n");
     }
 
 }
