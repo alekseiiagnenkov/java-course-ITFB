@@ -201,7 +201,7 @@ public class Employee {
         };
 
         MyList<Employee> myList = new MyList<>();
-        int a = Math.abs(rand.nextInt() % 40)+7;
+        int a = Math.abs(rand.nextInt() % 40) + 7;
         for (int i = 0; i < a; i++) {
             int randName = Math.abs(rand.nextInt() % (names.length));
             myList.add(new Builder()

@@ -7,11 +7,11 @@ public enum Role {
 
     private final double value;
 
-    private Role(double value){
+    private Role(double value) {
         this.value = value;
     }
 
-    double getValue(){
+    double getValue() {
         return this.value;
     }
 }
