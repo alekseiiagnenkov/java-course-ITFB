@@ -3,8 +3,11 @@ package ru.mephi.seminar3.classwork;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
+/**
+ * @author https://github.com/alekseiiagnenkov<br><br>
+ * Company employee class.
+ */
 public class Employee {
 
     private String givenName;
@@ -20,6 +23,9 @@ public class Employee {
     private String state;
     private int code;
 
+    /**
+     * Implementation of the @Builder pattern.
+     */
     public static class Builder {
 
         private String givenName = "";
@@ -115,50 +121,110 @@ public class Employee {
         this.code = builder.code;
     }
 
+    /**
+     * Get givenName.
+     *
+     * @return <b>givenName</b>.
+     */
     public String getGivenName() {
         return givenName;
     }
 
+    /**
+     * Get surName.
+     *
+     * @return <b>surName</b>.
+     */
     public String getSurName() {
         return surName;
     }
 
+    /**
+     * Get age.
+     *
+     * @return <b>age</b>.
+     */
     public int getAge() {
         return age;
     }
 
+    /**
+     * Get gender.
+     *
+     * @return <b>gender</b>.
+     */
     public Gender getGender() {
         return gender;
     }
 
+    /**
+     * Get role.
+     *
+     * @return <b>role</b>.
+     */
     public Role getRole() {
         return role;
     }
 
+    /**
+     * Get dept.
+     *
+     * @return <b>dept</b>.
+     */
     public int getDept() {
         return dept;
     }
 
+    /**
+     * Get eMail.
+     *
+     * @return <b>eMail</b>.
+     */
     public String getEMail() {
         return eMail;
     }
 
+    /**
+     * Get phone.
+     *
+     * @return <b>phone</b>.
+     */
     public String getPhone() {
         return phone;
     }
 
+    /**
+     * Get address
+     *
+     * @return <b>address</b>.
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Get city.
+     *
+     * @return <b>city</b>.
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * Get state.
+     *
+     * @return <b>state</b>.
+     */
     public String getState() {
         return state;
     }
 
+    /**
+     * Get code.
+     *
+     * @return <b>code</b>.
+     */
     public int getCode() {
         return code;
     }
@@ -179,7 +245,11 @@ public class Employee {
                 "Code: " + code + '\n';
     }
 
-
+    /**
+     * Creating a list of random workers.
+     *
+     * @return list of {@link Employee} .
+     */
     public static List<Employee> createShortList() {
         Random rand = new Random();
 
