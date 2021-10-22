@@ -282,7 +282,7 @@ public class Employee {
                     .Role(Role.values()[Math.abs(rand.nextInt() % 3)])
                     .Dept(Math.abs(rand.nextInt() % 5))
                     .eMail((rand.nextInt() % 10000 + 1000) + "@gmail.com")
-                    .Phone("89" + Math.abs(rand.nextInt() % 1000 + 100) + Math.abs(rand.nextInt() % 10000 + 1000))
+                    .Phone("89" + (Math.abs(rand.nextInt() % 999) + 1000) + (Math.abs(rand.nextInt() % 9999) + 10000))
                     .Address(Math.abs(rand.nextInt() % 100) + " st." + Math.abs(rand.nextInt() % 90 + 10))
                     .City("SomeWhere")
                     .State(states[Math.abs(rand.nextInt() % (states.length))])
