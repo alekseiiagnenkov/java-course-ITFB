@@ -11,25 +11,14 @@ import java.util.Scanner;
  */
 public class lab1 {
     public static void main(String[] args) {
-        //TODO разделялись пробелом
-        System.out.print("Enter the number of lines:");
 
-        int size = -1;
-        do {
-            Scanner in = new Scanner(System.in);
-            if (in.hasNextInt()) {
-                size = in.nextInt();
-            }
-        } while (size == -1);
+        System.out.print("Enter a string:");
 
-        String[] str = new String[size];
         Scanner in = new Scanner(System.in);
-        for( int i=0; i< size; i++){
-            str[i] = in.nextLine();
-        }
+        String str = in.nextLine();
 
         Map<String, Integer> map = new HashMap<>();
-        for (String s : str) {
+        for (String s : str.split(" ")) {
             int count = map.getOrDefault(s, -1);
 
             if (count == -1)
