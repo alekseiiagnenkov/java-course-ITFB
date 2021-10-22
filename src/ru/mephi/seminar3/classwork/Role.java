@@ -24,7 +24,7 @@ public enum Role {
      *
      * @return <b>value</b>.
      */
-    double getValue() {
+    public double getValue() {
         return this.value;
     }
 }
