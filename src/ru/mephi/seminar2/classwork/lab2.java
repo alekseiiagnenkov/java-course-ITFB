@@ -9,27 +9,16 @@ import java.util.*;
  * .<br>Changed: Output is in the same order as input.
  */
 public class lab2 {
-    //TODO разделялись пробелом
+
     public static void main(String[] args) {
-        System.out.print("Enter the number of lines:");
+        System.out.print("Enter a string:");
 
-        int size = -1;
-        do {
-            Scanner in = new Scanner(System.in);
-            if (in.hasNextInt()) {
-                size = in.nextInt();
-            }
-        } while (size == -1);
-
-        String[] str = new String[size];
         Scanner in = new Scanner(System.in);
-        for( int i=0; i< size; i++){
-            str[i] = in.nextLine();
-        }
+        String str = in.nextLine();
 
         Map<String, Integer> set = new LinkedHashMap<>();
 
-        for (String s : str) {
+        for (String s : str.split(" ")) {
             int count = set.getOrDefault(s, -1);
 
             if (count == -1)
