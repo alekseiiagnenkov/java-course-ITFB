@@ -285,8 +285,6 @@ public class Employee {
                     .Phone("89" + Math.abs(rand.nextInt() % 1000 + 100) + Math.abs(rand.nextInt() % 10000 + 1000))
                     .Address(Math.abs(rand.nextInt() % 100) + " st." + Math.abs(rand.nextInt() % 90 + 10))
                     .City("SomeWhere")
-                    //я конечно могу сделать массив и создать зависимость от штата,
-                    //но думаю, что суть текущей задачи не в этом
                     .State(states[Math.abs(rand.nextInt() % (states.length))])
                     .Code(Math.abs(rand.nextInt() % 100))
                     .build()

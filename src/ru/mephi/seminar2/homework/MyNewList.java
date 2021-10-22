@@ -47,6 +47,16 @@ public class MyNewList<T extends Comparable> extends MyList<T> {
         return head;
     }
 
+    public void addAll1(MyNewList<T> other) {
+        while (other.size() != 0) {
+            int i = 0;
+            while (this.get(i).compareTo(other.get(0)) > 0) {
+                i++;
+            }
+            this.add(other.remove(0).getValue(), i);
+        }
+    }
+
     /**
      * main for test
      */
@@ -66,8 +76,12 @@ public class MyNewList<T extends Comparable> extends MyList<T> {
         list2.add(9);
         list2.add(10);
 
-        MyNewList<Integer> head = list1.addAll(list2);
+/*        MyNewList<Integer> head = list1.addAll(list2);
         for (int i = 0; i < head.size(); i++)
-            System.out.println(head.get(i));
+            System.out.println(head.get(i));*/
+
+        list1.addAll1(list2);
+        for (int i = 0; i < list1.size(); i++)
+            System.out.println(list1.get(i));
     }
 }
