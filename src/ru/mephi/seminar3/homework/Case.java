@@ -18,6 +18,9 @@ import static ru.mephi.seminar3.classwork.Employee.createShortList;
  */
 public class Case {
 
+    static int total = 0;
+
+
     /**
      * функция вывода зарплат на экран
      *
@@ -40,21 +43,28 @@ public class Case {
         MyBiPredicate<Employee, Role> checkRoleEmployee =
                 (e, r) -> e.getRole().equals(r);
 
+        MyConsumer<Integer> addTotal =
+                i-> total +=i;
 
         System.out.println("\n\nSALARY EXECUTIVE:");
         list.stream()
                 .filter(e -> checkRoleEmployee.test(e, Role.EXECUTIVE))
+                .peek(e -> addTotal.accept(hoursToSalary.apply(e, hoursTable.getHours(e))))
                 .forEach(printEmployee);
 
         System.out.println("\n\nSALARY MANAGER:");
         list.stream()
                 .filter(e -> checkRoleEmployee.test(e, Role.MANAGER))
+                .peek(e -> addTotal.accept(hoursToSalary.apply(e, hoursTable.getHours(e))))
                 .forEach(printEmployee);
 
         System.out.println("\n\nSALARY STAFF:");
         list.stream()
                 .filter(e -> checkRoleEmployee.test(e, Role.STAFF))
+                .peek(e -> addTotal.accept(hoursToSalary.apply(e, hoursTable.getHours(e))))
                 .forEach(printEmployee);
+
+        System.out.print("\nTotal money: " + total);
     }
 
     /**
