@@ -3,6 +3,7 @@ package ru.mephi.seminar3.homework;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 import ru.mephi.seminar3.classwork.Employee;
 import ru.mephi.seminar3.classwork.Gender;
@@ -19,7 +20,6 @@ import static ru.mephi.seminar3.classwork.Employee.createShortList;
 public class Case {
 
     static int total = 0;
-
 
     /**
      * функция вывода зарплат на экран
@@ -40,31 +40,38 @@ public class Case {
                         "\nName: " + fullNameEmployee.apply(e)
                                 + " Salary: " + hoursToSalary.apply(e, hoursTable.getHours(e)));
 
-        MyBiPredicate<Employee, Role> checkRoleEmployee =
-                (e, r) -> e.getRole().equals(r);
+        Predicate<Employee> checkRoleManager =
+                e-> e.getRole().equals(Role.MANAGER);
+
+        Predicate<Employee> checkRoleExecutive =
+                e-> e.getRole().equals(Role.EXECUTIVE);
+
+        Predicate<Employee> checkRoleStaff =
+                e-> e.getRole().equals(Role.STAFF);
 
         MyConsumer<Integer> addTotal =
-                i-> total +=i;
+                i -> total += i;
 
         System.out.println("\n\nSALARY EXECUTIVE:");
         list.stream()
-                .filter(e -> checkRoleEmployee.test(e, Role.EXECUTIVE))
+                .filter(checkRoleExecutive)
                 .peek(e -> addTotal.accept(hoursToSalary.apply(e, hoursTable.getHours(e))))
                 .forEach(printEmployee);
 
         System.out.println("\n\nSALARY MANAGER:");
         list.stream()
-                .filter(e -> checkRoleEmployee.test(e, Role.MANAGER))
+                .filter(checkRoleManager)
                 .peek(e -> addTotal.accept(hoursToSalary.apply(e, hoursTable.getHours(e))))
                 .forEach(printEmployee);
 
         System.out.println("\n\nSALARY STAFF:");
         list.stream()
-                .filter(e -> checkRoleEmployee.test(e, Role.STAFF))
+                .filter(checkRoleStaff)
                 .peek(e -> addTotal.accept(hoursToSalary.apply(e, hoursTable.getHours(e))))
                 .forEach(printEmployee);
 
         System.out.print("\nTotal money: " + total);
+        total = 0;
     }
 
     /**
@@ -145,7 +152,7 @@ public class Case {
 
         Random random = new Random();
         for (Employee employee : list) {
-            hoursTable.addHours(employee, Math.abs(random.nextInt() % 200) + 100);
+            hoursTable.addHours(employee, Math.abs(random.nextInt() % 100) + 100);
         }
         getToKnowSalaries(list, hoursTable);
 
