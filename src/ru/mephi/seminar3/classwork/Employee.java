@@ -314,12 +314,12 @@ public class Employee {
 
         list.stream()
                 .parallel()
-                .filter(p -> p.getRole() == Role.MANAGER)
+                .filter(p -> p.getRole().equals(Role.MANAGER))
                 .forEach(Accountant::paySalary);
 
         list.stream()
                 .parallel()
-                .filter(p -> p.getRole() == Role.STAFF)
+                .filter(p -> p.getRole().equals(Role.STAFF))
                 .forEach(Accountant::payPremium);
     }
 
