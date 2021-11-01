@@ -24,7 +24,7 @@ public class HoursTable {
      * Конструктор
      * @param list список {@link Employee}
      */
-    HoursTable(List<Employee> list) {
+    public HoursTable(List<Employee> list) {
         this.hours = new LinkedHashMap<>();
         for (Employee employee : list) {
             hours.put(employee.getPhone(), 0);
