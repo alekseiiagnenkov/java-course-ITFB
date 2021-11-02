@@ -55,7 +55,8 @@ public class Task4 {
         System.out.println("Average age:"
                 + list.stream()
                 .mapToInt(Employee::getAge)
-                .average());
+                .average()
+                .getAsDouble());
 
         /**
          * Выводим максимальный возраст
@@ -64,6 +65,7 @@ public class Task4 {
                 "The oldest employee:\n"
                         + list.stream()
                         .max(Comparator.comparing(Employee::getAge))
+                        .get()
                         + "\n\n"
         );
 
@@ -74,6 +76,7 @@ public class Task4 {
                 "The youngest employee:\n"
                         + list.stream()
                         .min(Comparator.comparing(Employee::getAge))
+                        .get()
                         + "\n\n"
         );
 
@@ -86,6 +89,7 @@ public class Task4 {
                 .filter(checkStaff)
                 .peek(e -> log("Finished Surname:", e.getSurName()))
                 .findFirst()
+                .get()
                 + "\n\n"
         );
 
@@ -98,6 +102,7 @@ public class Task4 {
                 .filter(checkStaff)
                 .peek(e -> log("Finished Surname:", e.getSurName()))
                 .findFirst()
+                .get()
                 + "\n\n"
         );
     }
@@ -140,12 +145,14 @@ public class Task4 {
                 .values()
                 .stream()
                 .min(Integer::compareTo)
+                .get()
                 + "\nMax:"
                 + hoursTable
                 .getHours()
                 .values()
                 .stream()
                 .max(Integer::compareTo)
+                .get()
         );
 
 
@@ -159,6 +166,7 @@ public class Task4 {
                 .stream()
                 .mapToInt(i -> i)
                 .average()
+                .getAsDouble()
         );
 
         /**
@@ -183,6 +191,7 @@ public class Task4 {
                 .stream()
                 .filter(i -> i > 190)
                 .findFirst()
+                .get()
         );
 
     }
