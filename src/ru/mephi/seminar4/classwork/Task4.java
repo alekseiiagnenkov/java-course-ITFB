@@ -89,7 +89,7 @@ public class Task4 {
                 .filter(checkStaff)
                 .peek(e -> log("Finished Surname:", e.getSurName()))
                 .findFirst()
-                .get()
+                .orElse(null)
                 + "\n\n"
         );
 
@@ -97,12 +97,12 @@ public class Task4 {
          * Ищем параллельно первого STAFF в списке
          */
         System.out.println("PARALLEL\nThe first while STAFF:");
-        System.out.println(list.stream().parallel()
+        System.out.println(list.parallelStream()
                 .peek(e -> log("Surname:", e.getSurName()))
                 .filter(checkStaff)
                 .peek(e -> log("Finished Surname:", e.getSurName()))
                 .findFirst()
-                .get()
+                .orElse(null)
                 + "\n\n"
         );
     }
@@ -118,7 +118,6 @@ public class Task4 {
         for (Employee employee : list) {
             hoursTable.addHours(employee, Math.abs(random.nextInt() % 100) + 100);
         }
-
 
         /**
          * Выводим все часы, при этом подсчитываем их количество через peek
@@ -155,7 +154,6 @@ public class Task4 {
                 .get()
         );
 
-
         /**
          * Подсчитаем среднее количество часов
          */
@@ -191,7 +189,7 @@ public class Task4 {
                 .stream()
                 .filter(i -> i > 190)
                 .findFirst()
-                .get()
+                .orElse(-1)
         );
 
     }
@@ -202,6 +200,5 @@ public class Task4 {
 
         firstExample(list);
         secondExample(list);
-
     }
 }
