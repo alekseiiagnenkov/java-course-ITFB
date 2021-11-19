@@ -1,13 +1,11 @@
 package ru.mephi.seminar5.homework;
 
 import java.time.*;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
-import java.util.concurrent.SynchronousQueue;
 
 public class task1 {
 
-    public static void LocalDateExample() {
+    public static void localDateExample() {
         System.out.println("\n#2");
         LocalDate BennedictBorn = LocalDate.of(1976, Month.JULY, 19);
 
@@ -20,7 +18,7 @@ public class task1 {
 
     }
 
-    public static void LocalTimeExample() {
+    public static void localTimeExample() {
         System.out.println("\n#3");
         LocalTime trainDeparts = LocalTime.of(13, 45);
         LocalTime trainArrives = LocalTime.of(19, 25);
@@ -34,7 +32,7 @@ public class task1 {
 
     }
 
-    public static void LocalDateTimeExample() {
+    public static void localDateTimeExample() {
 
         System.out.println("\n#1");
         LocalDateTime LincolnBorn = LocalDate.of(1809, Month.FEBRUARY, 12).atStartOfDay();
@@ -59,7 +57,7 @@ public class task1 {
 
     }
 
-    public static void TemporalAdjustersExample() {
+    public static void temporalAdjustersExample() {
         System.out.println("\n#5");
         LocalDateTime startSchool = LocalDate.of(LocalDate.now().getYear(), Month.SEPTEMBER, 1).atStartOfDay();
         long num = startSchool.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY)).getDayOfMonth() - startSchool.getDayOfMonth();
@@ -77,10 +75,10 @@ public class task1 {
     }
 
     public static void main(String[] arg) {
-        LocalDateExample();
-        LocalTimeExample();
-        LocalDateTimeExample();
-        TemporalAdjustersExample();
+        localDateExample();
+        localTimeExample();
+        localDateTimeExample();
+        temporalAdjustersExample();
         System.out.println("\n#6\nWhat is the time of the week's meetings?    Not at all. Meeting next week at 1:30 PM");
     }
 
