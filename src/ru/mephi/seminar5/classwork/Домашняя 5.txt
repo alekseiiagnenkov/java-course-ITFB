@@ -49,18 +49,18 @@
 
     // Flight 123, San Francisco to  Boston, leaves SFO at 10:30 PM June 13, 2014
     // The flight is 5 hours 30 minutes
-    //   What is the local time in Boston when the flight takes off?
-    //   What is the local time at Boston Logan airport when the flight arrives?
-    //   What is the local time in San Francisco when the flight arrives?
+    +//   What is the local time in Boston when the flight takes off?
+    +//   What is the local time at Boston Logan airport when the flight arrives?
+    +//   What is the local time in San Francisco when the flight arrives?
 
 
     // Flight 456, San Francisco to Bangalore, India, leaves SFO at Saturday, 10:30 PM June 28, 2014
     // The flight time is 22 hours
-    //   Will the traveler make a meeting in Bangalore Monday at 9 AM local time?
-    //   Can the traveler call her husband at a reasonable time when she arrives?
+    +//   Will the traveler make a meeting in Bangalore Monday at 9 AM local time?
+    +//   Can the traveler call her husband at a reasonable time when she arrives?
 
 
     // Flight 123, San Francisco to Boston, leaves SFO at 10:30 PM Saturday, November 1st, 2014
     // Flight time is 5 hours 30 minutes.
-    //   What day and time does the flight arrive in Boston?
-    //   What happened?
+    +//   What day and time does the flight arrive in Boston?
+    +//   What happened?
