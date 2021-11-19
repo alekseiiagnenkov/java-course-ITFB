@@ -1,6 +1,5 @@
 package ru.mephi.seminar5.classwork.checked;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,8 +17,9 @@ public class Exceptions {
     /**
      * Вызываем FileNotFoundException путем считывания несуществующего файла
      */
-    public static void throwFileNotFoundException() throws FileNotFoundException {
-        FileReader test = new FileReader("hello_world.txt"); // вызов происходит тут
+    public static void throwFileNotFoundException() throws IOException {
+        try (FileReader test = new FileReader("hello_world.txt")) {}
+        ; // вызов происходит тут
     }
 
     /**
@@ -35,9 +35,10 @@ public class Exceptions {
      * Вызываем IOException когда пытаемся прочитать закрытый файл
      */
     public static void throwIOException() throws IOException {
-        FileWriter test = new FileWriter("test.txt");
-        test.close();
-        test.write(10); // вызов происходит тут
+        try (FileWriter test = new FileWriter("test.txt")) {
+            test.close();
+            test.write(10); // вызов происходит тут
+        }
     }
 
     /**
@@ -64,7 +65,7 @@ public class Exceptions {
 
         try {
             throwFileNotFoundException();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage() + '\n' + e.getClass() + '\n');
         }
 
