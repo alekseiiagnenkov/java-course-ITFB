@@ -9,24 +9,24 @@ public class task2 {
      * Примеры использования ZoneId
      */
     public static void useZoneIdExample() {
-        ZoneId BOS = ZoneId.of("America/Los_Angeles");
-        ZoneId SFO = ZoneId.of("America/New_York");
+        ZoneId SFO = ZoneId.of("America/Los_Angeles");
+        ZoneId BOS = ZoneId.of("America/New_York");
         ZoneId BLR = ZoneId.of("Asia/Calcutta");
 
         System.out.println("\n#1");
         LocalDateTime startSanFr = LocalDate.of(2014, Month.JUNE, 13).atTime(22, 30);
-        ZonedDateTime flightStart = ZonedDateTime.of(startSanFr, BOS);
+        ZonedDateTime flightStart = ZonedDateTime.of(startSanFr, SFO);
         LocalTime flightTime = LocalTime.of(5, 30);
 
         System.out.println("What is the local time in Boston when the flight takes off?     " +
                 flightStart
                         .toOffsetDateTime()
-                        .atZoneSameInstant(SFO)
+                        .atZoneSameInstant(BOS)
                         .toLocalTime() +
                 "\nWhat is the local time at Boston Logan airport when the flight arrives?    " +
                 (flightStart.plusHours(flightTime.getHour()).plusMinutes(flightTime.getMinute()))
                         .toOffsetDateTime()
-                        .atZoneSameInstant(SFO)
+                        .atZoneSameInstant(BOS)
                         .toLocalTime() +
                 "\nWhat is the local time in San Francisco when the flight arrives?    " +
                 startSanFr.plusHours(flightTime.getHour()).plusMinutes(flightTime.getMinute())

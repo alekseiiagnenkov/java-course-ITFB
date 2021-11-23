@@ -15,10 +15,9 @@ public class task1 {
         boolean leap = BennedictBorn.isLeapYear();
         System.out.println("Born in a leap year?    " + BennedictBorn.isLeapYear() +
                 "\nHow many days in the year he was born?   " + (leap ? 366 : 365) +
-                "\nHow many decades old is he?    " + (LocalDate.now().getYear() - BennedictBorn.getYear()) / 10 +
+                "\nHow many decades old is he?    " + ((LocalDate.now().getYear() - BennedictBorn.getYear())/10) +
                 "\nWhat was the day of the week on his 21st birthday?   " + LocalDate.of(BennedictBorn.getYear() + 21, BennedictBorn.getMonth(), BennedictBorn.getDayOfMonth()).getDayOfWeek()
         );
-
     }
 
     /**
@@ -72,18 +71,28 @@ public class task1 {
     public static void temporalAdjustersExample() {
         System.out.println("\n#5");
         LocalDateTime startSchool = LocalDate.of(LocalDate.now().getYear(), Month.SEPTEMBER, 1).atStartOfDay();
-        long num = startSchool.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY)).getDayOfMonth() - startSchool.getDayOfMonth();
-        if (num < 2) {
-            startSchool = startSchool.plusDays(num);
-        }
+        long num = startSchool.with(TemporalAdjusters.firstInMonth(DayOfWeek.TUESDAY)).getDayOfMonth()+7 - startSchool.getDayOfMonth();
+        startSchool = startSchool.plusDays(num);
 
         LocalDateTime finishSemester = LocalDate.of(LocalDate.now().getYear() + 1, Month.JUNE, 25).atStartOfDay();
 
 
+
         long daysInSchool = Duration.between(startSchool.atOffset(ZoneOffset.UTC), finishSemester.atOffset(ZoneOffset.UTC)).toDays();
+        DayOfWeek day = finishSemester.getDayOfWeek();
+        int numbers = 0;
+        if (day == DayOfWeek.SATURDAY){
+            numbers = 1;
+        } else if(day == DayOfWeek.SUNDAY){
+            numbers =2 ;
+        }
+        long days = startSchool.plusDays(daysInSchool).with(TemporalAdjusters.next(DayOfWeek.MONDAY)).getDayOfMonth();
+
         System.out.println("What is the date?   " + startSchool.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.TUESDAY)) +
-                "\nHow many days of school are there?   " + ((daysInSchool / 7) - 4) * 5
+                "\nHow many days of school are there?   " + (((daysInSchool / 7) - 4) * 5 + daysInSchool % 7 - numbers)
         );
+
+        System.out.println("\n#6\nWhat is the time of the week's meetings?    Not at all. Meeting next week at 1:30 PM");
     }
 
     public static void main(String[] arg) {
@@ -91,7 +100,6 @@ public class task1 {
         localTimeExample();
         localDateTimeExample();
         temporalAdjustersExample();
-        System.out.println("\n#6\nWhat is the time of the week's meetings?    Not at all. Meeting next week at 1:30 PM");
     }
 
 }
