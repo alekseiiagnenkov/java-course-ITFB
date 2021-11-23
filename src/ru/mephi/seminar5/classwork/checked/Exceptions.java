@@ -95,5 +95,47 @@ public class Exceptions {
         } catch (ArithmeticException e) {
             System.out.println(e.getMessage() + '\n' + e.getClass() + '\n');
         }
+
+ /*       try {
+            throwArrayIndexOutOfBoundsException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+            System.err.println(e.getClass());
+        }
+
+        try {
+            throwFileNotFoundException();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.err.println(e.getClass());
+        }
+
+        try {
+            throwNullPointerException(null);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+            System.err.println(e.getClass());
+        }
+
+        try {
+            throwClassCastException();
+        } catch (ClassCastException e) {
+            System.out.println(e.getMessage());
+            System.err.println(e.getClass());
+        }
+
+        try {
+            throwIOException();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.err.println(e.getClass());
+        }
+
+        try {
+            throwArithmeticException();
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+            System.err.println(e.getClass());
+        }*/
     }
 }
