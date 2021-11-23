@@ -1,5 +1,6 @@
 package ru.mephi.seminar5.classwork.checked;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,8 +19,7 @@ public class Exceptions {
      * Вызываем FileNotFoundException путем считывания несуществующего файла
      */
     public static void throwFileNotFoundException() throws IOException {
-        try (FileReader test = new FileReader("hello_world.txt")) {}
-        ; // вызов происходит тут
+        try (FileReader test = new FileReader("hello_world.txt")) {} // вызов происходит тут
     }
 
     /**
@@ -38,6 +38,9 @@ public class Exceptions {
         try (FileWriter test = new FileWriter("test.txt")) {
             test.close();
             test.write(10); // вызов происходит тут
+        } finally{
+            File test = new File ("test.txt");
+            test.delete();
         }
     }
 
