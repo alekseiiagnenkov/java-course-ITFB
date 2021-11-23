@@ -5,6 +5,9 @@ import java.time.temporal.TemporalAdjusters;
 
 public class task1 {
 
+    /**
+     * Решение с использованием LocalDate
+     */
     public static void localDateExample() {
         System.out.println("\n#2");
         LocalDate BennedictBorn = LocalDate.of(1976, Month.JULY, 19);
@@ -18,6 +21,9 @@ public class task1 {
 
     }
 
+    /**
+     * Решение с использованием LocalTime
+     */
     public static void localTimeExample() {
         System.out.println("\n#3");
         LocalTime trainDeparts = LocalTime.of(13, 45);
@@ -32,6 +38,9 @@ public class task1 {
 
     }
 
+    /**
+     * Решение с использованием LocalDateTime
+     */
     public static void localDateTimeExample() {
 
         System.out.println("\n#1");
@@ -57,6 +66,9 @@ public class task1 {
 
     }
 
+    /**
+     * Решение с использованием TemporalAdjusters
+     */
     public static void temporalAdjustersExample() {
         System.out.println("\n#5");
         LocalDateTime startSchool = LocalDate.of(LocalDate.now().getYear(), Month.SEPTEMBER, 1).atStartOfDay();
