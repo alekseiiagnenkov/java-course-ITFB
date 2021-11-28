@@ -31,9 +31,7 @@ public class P04NioReadAll {
                 throw new SecurityException("The file cannot be read!");
             }
 
-            fileArr = new LinkedList<>();
-            BufferedReader bReader = new BufferedReader(new FileReader("./src/ru/mephi/seminar6/homework/task1/hamlet.txt"));
-            bReader.lines().forEach(fileArr::add);
+            fileArr = Files.readAllLines(file);
 
             /**
              * считаем количество Str или str в строке
@@ -69,7 +67,8 @@ public class P04NioReadAll {
             fileArr.stream()
                     .filter(line -> line.contains(str) || line.contains(Str))
                     .peek(findStr)
-                    .forEach(line->{});
+                    .forEach(line -> {
+                    });
             System.out.println("Word count: " + wordCount);
 
 
@@ -80,7 +79,8 @@ public class P04NioReadAll {
             fileArr.stream()
                     .filter(line -> line.contains(str) || line.contains(Str))
                     .peek(findStr)
-                    .forEach(line->{});
+                    .forEach(line -> {
+                    });
             System.out.println("Word count: " + wordCount);
 
 

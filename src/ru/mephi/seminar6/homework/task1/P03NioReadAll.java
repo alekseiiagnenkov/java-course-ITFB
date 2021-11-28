@@ -26,9 +26,7 @@ public class P03NioReadAll {
                 throw new SecurityException("The file cannot be read!");
             }
 
-            fileArr = new LinkedList<>();
-            BufferedReader bReader = new BufferedReader(new FileReader("./src/ru/mephi/seminar6/homework/task1/hamlet.txt"));
-            bReader.lines().forEach(fileArr::add);
+            fileArr = Files.readAllLines(file);
 
             System.out.println("\n=== Rosencrantz ===");
             // Filter for Ros. here
