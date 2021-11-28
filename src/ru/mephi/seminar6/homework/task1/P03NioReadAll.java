@@ -33,14 +33,14 @@ public class P03NioReadAll {
             System.out.println("\n=== Rosencrantz ===");
             // Filter for Ros. here
             fileArr.stream()
-                    .filter(line -> line.contains("Ros."))
+                    .filter(line -> line.trim().startsWith("Ros."))
                     .forEach(System.out::println);
 
 
             System.out.println("\n=== Guildenstern ===");
             // Filter for Guil. here
             fileArr.stream()
-                    .filter(line -> line.contains("Guil."))
+                    .filter(line -> line.trim().startsWith("Guil."))
                     .forEach(System.out::println);
 
 
