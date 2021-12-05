@@ -22,7 +22,9 @@ public class DirWalk {
         try (Stream<Path> files = Files.walk(Paths.get(args[0]))) {
 
             System.out.println("\n=== Dir build ===");
-            files.forEach(System.out::println);
+            files
+                    .filter(line->line.getName(line.getNameCount()-1).toString().equals("build"))
+                    .forEach(System.out::println);
 
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
             System.out.println("Error: " + e.getMessage());
