@@ -18,6 +18,37 @@ public class P04NioReadAll {
     static long index = 0, Index = 0;
     static String Str, str;
 
+    /**
+     * считаем количество Str или str в строке
+     */
+    public static Consumer<String> createConsumer() {
+
+        Consumer<String> findStr = line -> {
+            String it = line;
+            do {
+                long index;
+                P04NioReadAll.index = it.indexOf(str);
+                Index = it.indexOf(Str);
+
+                if (Math.max(P04NioReadAll.index, Index) == -1) {
+                    break;
+                } else if (P04NioReadAll.index == -1) {
+                    index = Index;
+                } else if (Index == -1) {
+                    index = P04NioReadAll.index;
+                } else {
+                    index = Math.min(P04NioReadAll.index, Index);
+                }
+
+                wordCount++;
+                it = it.substring((int) index + 1);
+            } while (true);
+
+        };
+
+        return findStr;
+    }
+
     public static void main(String[] args) {
 
         Path file = Paths.get("./src/ru/mephi/seminar6/homework/task1/hamlet.txt");
@@ -33,32 +64,7 @@ public class P04NioReadAll {
 
             fileArr = Files.readAllLines(file);
 
-            /**
-             * считаем количество Str или str в строке
-             */
-            Consumer<String> findStr = line -> {
-                String it = line;
-                do {
-                    long index;
-                    P04NioReadAll.index = it.indexOf(str);
-                    Index = it.indexOf(Str);
-
-                    if (Math.max(P04NioReadAll.index, Index) == -1) {
-                        break;
-                    } else if (P04NioReadAll.index == -1) {
-                        index = Index;
-                    } else if (Index == -1) {
-                        index = P04NioReadAll.index;
-                    } else {
-                        index = Math.min(P04NioReadAll.index, Index);
-                    }
-
-                    wordCount++;
-                    it = it.substring((int) index + 1);
-                } while (true);
-
-            };
-
+            Consumer<String> findStr = createConsumer();
 
             System.out.println("\n=== Lord Count ===");
             wordCount = 0; // Replace with your pipeline
@@ -66,11 +72,8 @@ public class P04NioReadAll {
             str = "lord";
             fileArr.stream()
                     .filter(line -> line.contains(str) || line.contains(Str))
-                    .peek(findStr)
-                    .forEach(line -> {
-                    });
+                    .forEach(findStr);
             System.out.println("Word count: " + wordCount);
-
 
             System.out.println("\n=== Prison Count ===");
             wordCount = 0; // Replace with your pipeline
@@ -78,9 +81,7 @@ public class P04NioReadAll {
             str = "prison";
             fileArr.stream()
                     .filter(line -> line.contains(str) || line.contains(Str))
-                    .peek(findStr)
-                    .forEach(line -> {
-                    });
+                    .forEach(findStr);
             System.out.println("Word count: " + wordCount);
 
 

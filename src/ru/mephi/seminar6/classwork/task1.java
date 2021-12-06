@@ -14,10 +14,12 @@ public class task1 {
         String str = in.nextLine();
 
         try (BufferedReader bReader = new BufferedReader(new FileReader(args[0]))) {
+
             bReader
                     .lines()
-                    .filter(line -> line.trim().equals(str))
-                    .forEach(line -> count++);
+                    .filter(line -> line.trim().startsWith(str.trim()))
+                    .forEach(line -> count+=1);
+
             System.out.println("Result: " + count);
         } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());

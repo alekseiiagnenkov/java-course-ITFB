@@ -2,6 +2,7 @@ package ru.mephi.seminar6.classwork;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static ru.mephi.seminar6.classwork.ShoppingCart.deserialize;
@@ -22,7 +23,7 @@ class ShoppingCart implements Serializable {
     transient private static int count = 0;
 
     int cartID;
-    ArrayList<Item> items;
+    List<Item> items;
     int itemCount;
     transient double cartTotal;
 
@@ -111,7 +112,6 @@ public class task2 {
         for (int i = 0; i < count; i++) {
             take(myCart);
         }
-
 
         myCart.serialize("./src/ru/mephi/seminar6/classwork/date.txt");
 
